@@ -5,6 +5,7 @@ import com.example.mvvmmoviesassignment.Remote.Network
 import com.example.mvvmmoviesassignment.Remote.Resource
 import com.example.mvvmmoviesassignment.Remote.ResponseHandler
 import com.example.saveo.model_saveo.ResponseSaveo
+import com.example.saveo.modelhorizontal.HorizonalClass
 
 
 class Repository {
@@ -21,5 +22,10 @@ class Repository {
 
             return responseHandler.handleException(e)
         }
+    }
+
+    suspend fun getShowData(): Resource<List<HorizonalClass>> {
+        val call = api.getShowData()
+        return responseHandler.handleSuccess(call)
     }
 }

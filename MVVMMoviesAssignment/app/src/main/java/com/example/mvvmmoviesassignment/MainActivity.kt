@@ -4,21 +4,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmmoviesassignment.Views.MovieAdapter
 import com.example.saveo.model_saveo.ResponseSaveo
 import com.example.saveo.model_saveo.ResponseSaveoItem
+import com.example.saveo.modelhorizontal.HorizonalClass
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
   private var movieList: List<ResponseSaveoItem> = listOf()
    private lateinit var movieAdapter: MovieAdapter
+   private lateinit var showAdapter: ShowAdapter
+   private var showlist : List<HorizonalClass> = listOf()
     private var viewModel = MyViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setRecyclerviewAdapter()
+        setShowRecyclerview()
         setData()
     }
     private fun setData() {
@@ -27,6 +32,17 @@ class MainActivity : AppCompatActivity() {
             var value = it
             movieAdapter.update(value)
             })
+
+
+
+        viewModel.getShow().observe(this, Observer {
+           showAdapter.updateData(it)
+        })
+
+
+
+
+
         }
     private fun setRecyclerviewAdapter() {
         movieAdapter = MovieAdapter(movieList)
@@ -34,6 +50,14 @@ class MainActivity : AppCompatActivity() {
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         recycler.layoutManager = linearLayoutManager
         recycler.adapter = movieAdapter
+    }
+
+    private fun setShowRecyclerview() {
+        showAdapter = ShowAdapter(showlist)
+        val gridLayoutManager = GridLayoutManager(this,3)
+        gridLayoutManager.orientation = GridLayoutManager.VERTICAL
+        recycler_horizontal.layoutManager = gridLayoutManager
+        recycler_horizontal.adapter = showAdapter
     }
 
 }
