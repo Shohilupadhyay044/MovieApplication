@@ -6,13 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#313c6f"
+    android:background="#3f708b"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:background="#313c6f"
+        android:background="#3f708b"
         android:layout_height="50dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +61,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:background="#313c6f"
+        android:background="#3f708b"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -87,11 +87,7 @@
                 android:id="@+id/recycler_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-
-
         </LinearLayout>
-
-
     </ScrollView>
 </LinearLayout>
 

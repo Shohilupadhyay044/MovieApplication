@@ -1,7 +1,9 @@
 package com.example.mvvmmoviesassignment
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,7 +15,7 @@ import com.example.saveo.model_saveo.ResponseSaveoItem
 import com.example.saveo.modelhorizontal.HorizonalClass
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
   private var movieList: List<ResponseSaveoItem> = listOf()
    private lateinit var movieAdapter: MovieAdapter
    private lateinit var showAdapter: ShowAdapter
@@ -32,20 +34,12 @@ class MainActivity : AppCompatActivity() {
             var value = it
             movieAdapter.update(value)
             })
-
-
-
         viewModel.getShow().observe(this, Observer {
            showAdapter.updateData(it)
         })
-
-
-
-
-
         }
     private fun setRecyclerviewAdapter() {
-        movieAdapter = MovieAdapter(movieList)
+        movieAdapter = MovieAdapter(movieList,this)
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         recycler.layoutManager = linearLayoutManager
@@ -53,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setShowRecyclerview() {
-        showAdapter = ShowAdapter(showlist)
+        showAdapter = ShowAdapter(showlist,this)
         val gridLayoutManager = GridLayoutManager(this,3)
         gridLayoutManager.orientation = GridLayoutManager.VERTICAL
         recycler_horizontal.layoutManager = gridLayoutManager
