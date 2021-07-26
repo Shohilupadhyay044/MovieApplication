@@ -20,13 +20,6 @@ In this project we have used the following tech stack.
 
 ## Libraries Used 🌟
 
-1. Dimens: [Dimen](https://github.com/intuit/sdp)
-2. Icons: [Icons](https://www.flaticon.com/)
-3. Retrofit: [Retrofit](https://square.github.io/retrofit/)
-
-<br>
-
-
 Dependencies:
 
  // ViewModel and LiveData
